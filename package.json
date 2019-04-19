@@ -1,0 +1,18 @@
+{
+  "name": "prices-backend",
+  "version": "1.0.0",
+  "description": "Receive prices from frontend and save it to a spreadsheet",
+  "main": "index.js",
+  "scripts": {
+    "start": "netlify-lambda serve ./src/functions_src",
+    "build": "netlify-lambda build ./src/functions_src"
+  },
+  "keywords": [],
+  "author": "Vitor Barbosa",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^7.0.0",
+    "google-spreadsheet": "^2.0.7",
+    "netlify-lambda": "^1.4.5"
+  }
+}
