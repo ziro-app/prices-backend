@@ -1,5 +1,5 @@
 require('dotenv').config()
-// const response = require('../utils/response')
+const response = require('../utils/response')
 const editRow = require('../editRow/index')
 
 exports.handler = async ({ httpMethod, queryStringParameters, body }) => {
@@ -19,7 +19,7 @@ exports.handler = async ({ httpMethod, queryStringParameters, body }) => {
 		state = 'executionError'
 	}
 	return 'ok'
-	// return response(state)
+	return response(state)
 }
 
 // curl -d '{"fabricante": "100 Morena","bijuteria_min": "19.9","bijuteria_max":"99.9"}' -X POST http://localhost:9000/edit-row
