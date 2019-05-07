@@ -7,8 +7,9 @@ const editRowInSheet = (fabricante, data) => {
 			if (error)
 				reject({ message: 'Error in getRows', details: error })
 			const [ result ] = rows.filter(row => row.fabricante === fabricante)
+			console.log(result)
 			if (result) {
-				result.bijuteria_min = data.bijuteria_min
+				result.bijuteriamin = data.bijuteria_min
 				result.save(error => {
 					if (error)
 						reject({ message: 'Error in row.save', details: error })

@@ -18,7 +18,6 @@ exports.handler = async ({ httpMethod, queryStringParameters, body }) => {
 			console.log(error.details)
 		state = 'executionError'
 	}
-	return 'ok'
 	return response(state)
 }
 

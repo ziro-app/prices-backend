@@ -8,3 +8,5 @@ const editRow = async ({ fabricante, ...data }) => {
 	}
 	return 'dataError'
 }
+
+module.exports = editRow
