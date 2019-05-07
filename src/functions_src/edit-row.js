@@ -1,6 +1,6 @@
 require('dotenv').config()
 // const response = require('../utils/response')
-// const createRow = require('../createRow/index')
+const editRow = require('../editRow/index')
 
 exports.handler = async ({ httpMethod, queryStringParameters, body }) => {
 	let state = 'ok'
@@ -10,7 +10,7 @@ exports.handler = async ({ httpMethod, queryStringParameters, body }) => {
 		if (Object.keys(queryStringParameters).length !== 0)
 			state = 'parametersError'
 		if (state === 'ok') {
-			// state = await createRow(JSON.parse(body))
+			// state = await editRow(JSON.parse(body))
 		}
 	} catch (error) {
 		console.log(error.message)
