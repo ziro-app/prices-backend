@@ -1,30 +1,29 @@
 const auth = require('../authentication/auth')
 
-const editRowInSheet = (fabricante, data) => {
+const editRowInSheet = (supplier, data) => {
 	return new Promise( async (resolve, reject) => {
-		const { getCells } = await auth()
-		getCells(1, (error, cells) => {
+		const { getRows, addRow } = await auth()
+		getRows(1, (error, rows) => {
 			if (error)
-				reject({ message: 'Error in getCells', details: error })
-			console.log(cells)
-			const [ supplier ] = cells.filter(({ value }) => value === fabricante)
-			console.log(supplier)
-			if (supplier) {
-				const cellsToUpdate = cells.filter(({ row }) => row === supplier.row).slice(1)
-				const updatedCells = cellsToUpdate.map((cell, index) => {
-					cell.value = data[index + 2]
-					return cell
+				reject({ message: 'Error in getRows', details: error })
+			const [ supplierRow ] = rows.filter( ({ fabricante }) => fabricante === supplier)
+			const products = Object.keys(data).map(value => value.replace('_',''))
+			if (supplierRow) {
+				for (let i = 0; i < products.length; i++)
+					supplierRow[products[i]] = Object.values(data)[i]
+				supplierRow.save(error => {
+					if (error)
+						reject({ message: 'Error in SpreadsheetRow.Save', details: error })
 				})
-				console.log(updatedCells)
-				for (let i = 0; i < updatedCells.length; i++) {
-					updatedCells[i].save(error => {
-						if (error)
-							reject({ message: 'Error in cell.Save', details: error })
-					})
-				}
 				resolve('ok')
-			} else
-				reject({ message: 'Error in getCells', details: 'Supplier does not exist' })
+			} else {
+				data.fabricante = supplier
+				addRow(1, data, error => {
+					if (error)
+						reject({ message: 'Error in addRow', details: error })
+					resolve('ok')
+				})
+			}
 		})
 	})
 }
