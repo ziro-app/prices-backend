@@ -1,9 +1,12 @@
 const editRowInSheet = require('./editRowInSheet')
 
-const editRow = async ({ fabricante, ...data }) => {
-	const dataOk = fabricante && data
+const editRow = async ({ supplier, ...data }) => {
+	const dataOk = supplier && data
+	console.log(supplier)
+	console.log(data)
+	console.log(dataOk)
 	if (dataOk) {
-		const sheetStatus = await editRowInSheet(fabricante, data)
+		const sheetStatus = await editRowInSheet(supplier, data)
 		return 'ok'
 	}
 	return 'dataError'

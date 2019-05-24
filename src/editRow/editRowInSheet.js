@@ -7,7 +7,9 @@ const editRowInSheet = (supplier, data) => {
 			if (error)
 				reject({ message: 'Error in getRows', details: error })
 			const [ supplierRow ] = rows.filter( ({ fabricante }) => fabricante === supplier)
-			const products = Object.keys(data).map(value => value.replace('_',''))
+			const products = Object.keys(data).map(value => value.replace('-',''))
+			console.log(data)
+			console.log(products)
 			if (supplierRow) {
 				for (let i = 0; i < products.length; i++)
 					supplierRow[products[i]] = Object.values(data)[i]
