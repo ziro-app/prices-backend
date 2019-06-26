@@ -21,4 +21,5 @@ exports.handler = async ({ httpMethod, queryStringParameters, body }) => {
 	return response(state)
 }
 
+// curl -d '{"supplier":"100 Morena","bijuteria-min":"19.9","bijuteria-max":"99.9","body-min":"19.9","body-max":"99.9","blusa-min":"19.9","blusa-max":"99.9","bolsa-min":"19.9","bolsa-max":"99.9"}' -X POST https://prices-backend.ziro.online/.netlify/functions/edit-row
 // curl -d '{"supplier":"100 Morena","bijuteria-min":"19.9","bijuteria-max":"99.9","body-min":"19.9","body-max":"99.9","blusa-min":"19.9","blusa-max":"99.9","bolsa-min":"19.9","bolsa-max":"99.9"}' -X POST http://localhost:9000/edit-row

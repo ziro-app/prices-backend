@@ -7,20 +7,22 @@ const editRowInSheet = (supplier, data) => {
 			if (error)
 				reject({ message: 'Error in getRows', details: error })
 			const [ supplierRow ] = rows.filter( ({ fabricante }) => fabricante === supplier)
-			const products = Object.keys(data).map(value => value.replace('-',''))
-			console.log(data)
-			console.log(products)
+			let dataToSave = {}
+			Object.keys(data).map(key => {
+				if (supplierRow)
+					supplierRow[key.replace('-','')] = data[key]
+				else
+					dataToSave[key.replace('-','')] = data[key]
+			})
 			if (supplierRow) {
-				for (let i = 0; i < products.length; i++)
-					supplierRow[products[i]] = Object.values(data)[i]
 				supplierRow.save(error => {
 					if (error)
 						reject({ message: 'Error in SpreadsheetRow.Save', details: error })
 				})
 				resolve('ok')
 			} else {
-				data.fabricante = supplier
-				addRow(1, data, error => {
+				dataToSave.fabricante = supplier
+				addRow(1, dataToSave, error => {
 					if (error)
 						reject({ message: 'Error in addRow', details: error })
 					resolve('ok')
