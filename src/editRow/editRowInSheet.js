@@ -10,9 +10,9 @@ const editRowInSheet = (supplier, data) => {
 			let dataToSave = {}
 			Object.keys(data).map(key => {
 				if (supplierRow)
-					supplierRow[key.replace('-','')] = data[key]
+					supplierRow[key.replace('-','').replace('-','')] = data[key]
 				else
-					dataToSave[key.replace('-','')] = data[key]
+					dataToSave[key.replace('-','').replace('-','')] = data[key]
 			})
 			console.log(supplierRow)
 			console.log(dataToSave)
