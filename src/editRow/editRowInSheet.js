@@ -14,6 +14,8 @@ const editRowInSheet = (supplier, data) => {
 				else
 					dataToSave[key.replace('-','')] = data[key]
 			})
+			console.log(supplierRow)
+			console.log(dataToSave)
 			if (supplierRow) {
 				supplierRow.save(error => {
 					if (error)
